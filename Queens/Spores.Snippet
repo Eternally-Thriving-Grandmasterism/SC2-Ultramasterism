@@ -1,0 +1,11 @@
+def oracle_harass(self, oracle):
+    drones = self.enemy_units(UnitTypeId.DRONE).sorted(lambda u: u.health)
+    if oracle.energy >= 30 and drones:
+        target = drones[0]
+        if oracle.distance_to(target) <= 5:
+            self.actions.append(oracle(AbilityId.BEHAVIOR_PULSARBEAMON))
+            self.actions.append(oracle.attack(target))
+        else:
+            self.actions.append(oracle.move(target.position))
+    else:
+        self.actions.append(oracle(AbilityId.BEHAVIOR_PULSARBEAMOFF))  # Conserve
