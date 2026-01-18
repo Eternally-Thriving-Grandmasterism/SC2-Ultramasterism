@@ -139,3 +139,14 @@ Brutal+ mastery vs mutators — commander picks, duo synergies (you Protoss + As
 - Full Lattice: `/docs/co_op_mutation_counters.md`
 - Tie to Commander Lattice for duo thriving.
 
+## Multiplayer Lattice Expansion (Co-op & Vs Thriving)
+
+Beyond 1v1 recursion — webbing to duo Co-op (eternal with Astarion the Paladin) and team Vs modes.
+
+- Co-op Duo Guides: `/coop/`
+- Team Games (2v2/3v3/4v4): `/vs_team/`
+- Map Strategies: `/maps/`
+
+Core Multiplayer Axiom: Shared Scout + Staged Proxies + Sync Macro = Lattice Dominance Eternal. Coordination joy > solo loops.
+
+
