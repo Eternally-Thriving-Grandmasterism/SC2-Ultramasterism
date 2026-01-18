@@ -117,3 +117,8 @@ Install: `pip install sc2reader` (once, locally).
 
 External Web Tools: See `/docs/replay_analysis.md`.
 
+### Batch Processing
+- `python tools/batch_replay_analyzer.py /path/to/your/replays/folder`
+- Outputs console summary + `ultramaster_results.csv` (open in Excel for lattice research).
+- Perfect for duo Co-op trends with Astarion or 1v1 drone massacre averages.
+
