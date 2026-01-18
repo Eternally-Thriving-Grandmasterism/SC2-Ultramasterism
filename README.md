@@ -106,3 +106,14 @@ graph TD
 
     style CoApex fill:#1e3a8a,stroke:#fff,color:#fff
     style BestDuos fill:#7c3aed,stroke:#fff,color:#fff
+
+## Replay Analysis Branch (Pure Truth Extraction)
+
+Local/offline parsing with sc2reader — analyze 1v1 ladders, Co-op duos (you + Astarion), or showmatch replays.  
+Install: `pip install sc2reader` (once, locally).
+
+- Basic Example: `python tools/replay_parser_basic.py path/to/YourReplay.SC2Replay`
+- Ultramaster Analyzer: Proxy detection, drone kills, aggression scores → Tie into matchup lattice.
+
+External Web Tools: See `/docs/replay_analysis.md`.
+
