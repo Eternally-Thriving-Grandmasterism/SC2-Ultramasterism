@@ -1,0 +1,10 @@
+async def disruptor_micro(self):
+    for disruptor in self.units(UnitTypeId.DISRUPTOR):
+        if disruptor.is_idle:
+            clumped_enemies = self.enemy_units.closer_than(10, disruptor).clump_center()
+            if clumped_enemies:
+                self.actions.append(disruptor(AbilityId.PURIFICATIONNOVA, clumped_enemies))
+        # Dodge if threatened
+        if self.enemy_units.closer_than(8, disruptor):
+            safe = disruptor.position.towards(self.townhalls.closest_to(disruptor), 10)
+            self.actions.append(disruptor.move(safe))
