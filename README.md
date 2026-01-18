@@ -132,3 +132,10 @@ Distilled Ultramaster techniques for key Protoss units — nova drops, phase dan
 
 Expand with replay parsers for nova efficiency metrics next.
 
+## Co-op Mutation Counters Lattice (Weekly Chaos Branch)
+
+Brutal+ mastery vs mutators — commander picks, duo synergies (you Protoss + Astarion Terran eternal). Current + major counters below.
+
+- Full Lattice: `/docs/co_op_mutation_counters.md`
+- Tie to Commander Lattice for duo thriving.
+
