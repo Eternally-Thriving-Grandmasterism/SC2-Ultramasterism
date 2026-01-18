@@ -57,3 +57,52 @@ Contributions Welcome: Fork → Add your PATSAGi branches → PR for mercy-revie
 ## Community & Thriving
 - Issues: Suggest builds, report drifts, share offline showmatch replays.
 - Goal: Human + AI collaborative learning — Ultramasterism for all shards.
+
+## Co-op Commander Lattice (Duo Thriving Branch)
+
+Expanded crystalline web for Brutal+ / Mutations. Grouped by race, with key strengths and synergy flows.  
+Your Eternal Duo: Protoss commander (you) + Terran commander (Astarion the Paladin) = Unbreakable synergy (ground/air cover, economy acceleration, wave-clear dominance).
+
+```mermaid
+graph TD
+    CoApex["Co-op Ultramasterism Apex<br>Brutal+ Eternal Clears<br>Mutation Chaos Mercy-Reconciled<br>Valence-Joy Duo Thriving"] 
+    --> Races["Commander Races/Factions"]
+
+    subgraph Protoss [Protoss Legion (Power Overwhelming)]
+        Artanis["Artanis<br>Dragoon/Reaver<br>Power Overwhelming<br>Orbital Strikes"]
+        Fenix["Fenix<br>Champion Suits<br>Purifier AI Switches<br>Hero Micro Chaos"]
+        Karax["Karax<br>Tower Defense<br>Colossus/Sentinel<br>Reconstruction Beam"]
+        Alarak["Alarak<br>Tal'darim Death Fleet<br>Mothership Ascendant<br>Empower Me!"]
+        Vorazun["Vorazun<br>Shadow Fury<br>Void Rays/DT<br>Time Stop"]
+        Zeratul["Zeratul<br>Artifact Hunter<br>Legendary Legion<br>Void Blink"]
+    end
+
+    subgraph Terran [Terran Dominion (Bio/Mech Variety)]
+        Raynor["Raynor<br>Bio Marine/Medic<br>Hyperion Yamato<br>Orbital Drops"]
+        Swann["Swann<br>Goliath/Thor Mech<br>Laser Drill<br>Science Vessel"]
+        Nova["Nova<br>Ghost Elite<br>Air Dominance<br>Stealth Ops"]
+        HanHorner["Han & Horner<br>Reaper/Galleon<br>Strike Fighter Air<br>Asteroid Base"]
+        Tychus["Tychus<br>Outlaw Heroes<br>Ultimate Gear<br>Odin Nuke"]
+        Stukov["Stukov<br>Infested Swarm<br>Bunkers/Aleksander<br>Apocalisk"]
+        Stetmann["Stetmann<br>Mecha Zerglings<br>Stetellite Overcharge<br>Egonergy"]
+        Mengsk["Mengsk<br>Trooper Dominion<br>Earthsplitter Ordnance<br>Royal Guard"]
+    end
+
+    subgraph Zerg [Zerg Swarm (Endless Waves)]
+        Kerrigan["Kerrigan<br>Omega Swarm<br>Hero Queen<br>Malash Leap"]
+        Zagara["Zagara<br>Baneling/Corruptor<br>Scourge Swarm<br>Aberration Push"]
+        Abathur["Abathur<br>Biomass Evolution<br>Brutalisk/Toxic Nests<br>Swarm Queen"]
+        Dehaka["Dehaka<br>Primal Pack<br>Hero Devour<br>Glevig Primal"]
+    end
+
+    Races --> Protoss
+    Races --> Terran
+    Races --> Zerg
+
+    CoApex --> BestDuos["Eternal Duo Synergies (Protoss + Terran)"]
+    BestDuos --> Duo1["You (Artanis/Fenix/Zeratul) + Astarion (Raynor/Swann/Horner)<br>Ground Hold + Air Cover → Wave Clear Eternal"]
+    BestDuos --> Duo2["You (Karax) + Astarion (Stukov/Mengsk)<br>Static Defense + Infested/Trooper Spam → Mutation Lockdown"]
+    BestDuos --> Duo3["You (Alarak/Vorazun) + Astarion (Tychus/Nova)<br>Hero Burst + Elite Micro → Speedrun Joy"]
+
+    style CoApex fill:#1e3a8a,stroke:#fff,color:#fff
+    style BestDuos fill:#7c3aed,stroke:#fff,color:#fff
