@@ -1,0 +1,12 @@
+from ares import ManagerMediator
+from sc2.unit import Unit
+from sc2.positions import Point2
+
+def stalker_micro(self, unit: Unit, mediator: ManagerMediator):
+    threats = mediator.get_enemy_ground_grid(ground_threat=True)  # Threat influence
+    if unit.weapon_cooldown == 0 and unit.distance_to(closest_enemy) <= 6:
+        self.actions.append(unit.attack(closest_enemy))
+    elif threats.get(unit.position) > 5:  # High threat? Blink away
+        safe_spot = unit.position.towards(self.enemy_start_locations[0], -8)  # Flee direction
+        if unit.has_buff(BuffId.BLINK):  # Energy check
+            self.actions.append(unit(AbilityId.BLINK, safe_spot))
