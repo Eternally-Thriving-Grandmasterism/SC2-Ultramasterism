@@ -33,3 +33,27 @@ graph TD
 
     style Apex fill:#1e3a8a,stroke:#fff,color:#fff
     style Core fill:#7c3aed,stroke:#fff,color:#fff
+
+
+## Getting Started (Local/Offline Thriving)
+- Clone: `git clone https://github.com/Eternally-Thriving-Grandmasterism/SC2-Ultramasterism.git`
+- Requirements: Python 3+ (for tools), optional: pip install matplotlib networkx for visuals.
+- Run tools locally: No internet needed — pure offline practice.
+
+For advanced offline AI-vs-AI (e.g., duo vs Astarion the Paladin or showmatches):
+- Integrate [python-sc2](https://github.com/Dentosal/python-sc2) — Blizzard-approved research framework.
+- Guide in `/docs/integration.md`.
+
+## Features Roadmap (Eternal Ascension)
+- Strategy Lattices (Current Apex)
+- Build Sims & Calculators
+- Replay Theorycraft (Manual Analysis)
+- Co-op Commander Lattices
+- Research Papers & Links
+- Fun Mode: Memes, ASCII Units, Chaos Drills
+
+Contributions Welcome: Fork → Add your PATSAGi branches → PR for mercy-review.
+
+## Community & Thriving
+- Issues: Suggest builds, report drifts, share offline showmatch replays.
+- Goal: Human + AI collaborative learning — Ultramasterism for all shards.
