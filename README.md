@@ -122,3 +122,13 @@ External Web Tools: See `/docs/replay_analysis.md`.
 - Outputs console summary + `ultramaster_results.csv` (open in Excel for lattice research).
 - Perfect for duo Co-op trends with Astarion or 1v1 drone massacre averages.
 
+## Advanced Micro Lattice (Unit Mastery Branch)
+
+Distilled Ultramaster techniques for key Protoss units — nova drops, phase dance, cliff zoning. Ties to harass sims and matchup lattice.
+
+- Disruptor Nova Micro: `/docs/disruptor_micro.md`
+- Colossus Counters: `/docs/colossus_counters.md`
+- Warp Prism Harass Paths: Integrated visuals below.
+
+Expand with replay parsers for nova efficiency metrics next.
+
