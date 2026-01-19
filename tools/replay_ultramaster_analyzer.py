@@ -1,7 +1,6 @@
-# Ultramasterism Ultimate Analyzer
-# Exhaustive position-based proxy detection for ALL Protoss aggression structures
-# Covers every major cheese branch across PvZ/PvT/PvP to the nth degree
-# Ties to Aggression + Scout + Novel Proxies + Eternal Win lattice
+# Ultramasterism Ultimate Bidirectional Analyzer
+# Exhaustive proxy detection for Protoss (you) + Opponent threats across all matchups
+# Full lattice coverage: Aggression + Novel Proxies + Scout Counters + Eternal Win
 
 import sc2reader
 from sc2reader.engine.plugins import APMTracker
@@ -16,10 +15,10 @@ replay_path = sys.argv[1]
 sc2reader.engine.register_plugin(APMTracker())
 replay = sc2reader.load_replay(replay_path, load_level=4)
 
-# Dynamic player selection — prioritizes Protoss, fallback to player 1
+# Protoss player (you)
 protoss_player = next((p for p in replay.players if p.pick_race == 'Protoss'), replay.players[0])
 
-# Opponent for 1v1 matchup/position comparison
+# Opponent setup
 opponent = None
 opponent_race = "Unknown"
 if len(replay.players) == 2:
@@ -28,64 +27,153 @@ if len(replay.players) == 2:
 
 matchup = f"Protoss vs {opponent_race}"
 
-worker_kills = 0
+# Metrics init
+your_worker_kills = 0  # Opponent workers you killed
+opponent_worker_kills = 0  # Your probes opponent killed (defense metric)
 
-# Timing hints
-early_gateway_count = early_pylon_count = early_cannon_count = 0
-early_battery_count = early_forge_count = early_cyber_count = 0
-early_twilight_count = early_robo_count = early_stargate_count = 0
+# Your (Protoss) timing + proxy counts
+your_early_gateway = your_early_pylon = your_early_cannon = 0
+your_early_battery = your_early_forge = your_early_cyber = 0
+your_early_twilight = your_early_robo = your_early_stargate = 0
+your_proxy_gateway = your_proxy_pylon = your_proxy_cannon = 0
+your_proxy_battery = your_proxy_forge = your_proxy_cyber = 0
+your_proxy_twilight = your_proxy_robo = your_proxy_stargate = 0
 
-# Proxy counts (position-based)
-proxy_gateway_count = proxy_pylon_count = proxy_cannon_count = 0
-proxy_battery_count = proxy_forge_count = proxy_cyber_count = 0
-proxy_twilight_count = proxy_robo_count = proxy_stargate_count = 0
+# Opponent timing + proxy counts (race-agnostic init, specialized later)
+opp_early_buildings = {}
+opp_proxy_counts = {}
 
-# Specific branch flags
-proxy_detected = cannon_rush_detected = battery_proxy_detected = False
-adept_proxy_detected = blink_proxy_detected = robo_proxy_detected = False
-stargate_proxy_detected = False
+# Branch flags
+your_proxy_detected = your_cannon_rush = your_battery_proxy = False
+your_adept_proxy = your_blink_proxy = your_robo_proxy = your_stargate_proxy = False
+
+opp_proxy_detected = opp_proxy_hatch = opp_proxy_rax = opp_banshee_proxy = False
+opp_cannon_rush = False  # For PvP
 
 for event in replay.tracker_events:
-    # Worker kills (attributed to you preferred)
+    # Worker kills
     if event.__class__.__name__ == 'UnitDiedEvent' and getattr(event.unit, 'is_worker', False):
-        if event.unit.owner != protoss_player:
+        if event.unit.owner == protoss_player:  # Your probe died
+            if hasattr(event, 'killer_pid') and event.killer_pid == opponent.pid:
+                opponent_worker_kills += 1
+        else:  # Opponent worker died
             if hasattr(event, 'killer_pid') and event.killer_pid == protoss_player.pid:
-                worker_kills += 1
-            elif not hasattr(event, 'killer_pid'):
-                worker_kills += 1  # Fallback
+                your_worker_kills += 1
 
-    # Timing-based hints + unified unit name handling
+    # Unified timing + position handling
     if event.name in ['UnitBornEvent', 'UnitInitEvent']:
         seconds = getattr(event, 'seconds', 0)
         unit_name = getattr(event.unit, 'name', '') if hasattr(event, 'unit') else event.unit_name
+        controller = event.control_pid if hasattr(event, 'control_pid') else None
 
-        if unit_name in ['Gateway', 'WarpGate']:
-            if seconds < 300: early_gateway_count += 1
-        elif unit_name == 'Pylon':
-            if seconds < 210: early_pylon_count += 1
-        elif unit_name == 'PhotonCannon':
-            if seconds < 300: early_cannon_count += 1
-        elif unit_name == 'ShieldBattery':
-            if seconds < 360: early_battery_count += 1
-        elif unit_name == 'Forge':
-            if seconds < 240: early_forge_count += 1
-        elif unit_name == 'CyberneticsCore':
-            if seconds < 300: early_cyber_count += 1
-        elif unit_name == 'TwilightCouncil':
-            if seconds < 480: early_twilight_count += 1
-        elif unit_name == 'RoboticsFacility':
-            if seconds < 540: early_robo_count += 1
-        elif unit_name == 'Stargate':
-            if seconds < 540: early_stargate_count += 1
+        if controller == protoss_player.pid:
+            # Your Protoss timings
+            if unit_name in ['Gateway', 'WarpGate'] and seconds < 300: your_early_gateway += 1
+            elif unit_name == 'Pylon' and seconds < 210: your_early_pylon += 1
+            elif unit_name == 'PhotonCannon' and seconds < 300: your_early_cannon += 1
+            elif unit_name == 'ShieldBattery' and seconds < 360: your_early_battery += 1
+            elif unit_name == 'Forge' and seconds < 240: your_early_forge += 1
+            elif unit_name == 'CyberneticsCore' and seconds < 300: your_early_cyber += 1
+            elif unit_name == 'TwilightCouncil' and seconds < 480: your_early_twilight += 1
+            elif unit_name == 'RoboticsFacility' and seconds < 540: your_early_robo += 1
+            elif unit_name == 'Stargate' and seconds < 540: your_early_stargate += 1
 
-    # Position-based proxy detection
-    if opponent and event.name == 'UnitInitEvent' and event.control_pid == protoss_player.pid:
-        unit_name = event.unit_name
-        proxy_structures = [
-            'Gateway', 'WarpGate', 'Pylon', 'PhotonCannon', 'ShieldBattery',
-            'Forge', 'CyberneticsCore', 'TwilightCouncil',
-            'RoboticsFacility', 'Stargate'
-        ]
+        # Opponent timings (broad early building hint)
+        if controller == opponent.pid if opponent else False:
+            if seconds < 360:  # General early aggression window
+                opp_early_buildings[unit_name] = opp_early_buildings.get(unit_name, 0) + 1
+
+    # Position-based detection
+    if opponent and event.name == 'UnitInitEvent' and hasattr(event, 'x') and hasattr(event, 'y'):
+        if protoss_player.start_location and opponent.start_location:
+            dist_to_you = math.hypot(event.x - protoss_player.start_location.x, event.y - protoss_player.start_location.y)
+            dist_to_opp = math.hypot(event.x - opponent.start_location.x, event.y - opponent.start_location.y)
+
+            unit_name = event.unit_name
+            if event.control_pid == protoss_player.pid:
+                # Your proxies (closer to opponent)
+                if dist_to_opp < dist_to_you:
+                    if unit_name in ['Gateway', 'WarpGate']: your_proxy_gateway += 1
+                    elif unit_name == 'Pylon': your_proxy_pylon += 1
+                    elif unit_name == 'PhotonCannon': your_proxy_cannon += 1
+                    elif unit_name == 'ShieldBattery': your_proxy_battery += 1
+                    elif unit_name == 'Forge': your_proxy_forge += 1
+                    elif unit_name == 'CyberneticsCore': your_proxy_cyber += 1
+                    elif unit_name == 'TwilightCouncil': your_proxy_twilight += 1
+                    elif unit_name == 'RoboticsFacility': your_proxy_robo += 1
+                    elif unit_name == 'Stargate': your_proxy_stargate += 1
+
+            elif event.control_pid == opponent.pid:
+                # Opponent proxies (closer to you = threat)
+                if dist_to_you < dist_to_opp:
+                    opp_proxy_counts[unit_name] = opp_proxy_counts.get(unit_name, 0) + 1
+
+# Your branch logic
+your_any_proxy = (your_proxy_gateway + your_proxy_pylon + your_proxy_cannon + your_proxy_battery +
+                  your_proxy_forge + your_proxy_cyber + your_proxy_twilight + your_proxy_robo + your_proxy_stargate)
+if your_any_proxy > 0 or your_early_gateway >= 2: your_proxy_detected = True
+your_cannon_rush = your_proxy_cannon >= 1 or (your_proxy_forge > 0 and your_proxy_pylon > 0)
+your_battery_proxy = your_proxy_battery >= 1
+your_adept_proxy = your_proxy_cyber >= 1
+your_blink_proxy = your_proxy_twilight >= 1
+your_robo_proxy = your_proxy_robo >= 1
+your_stargate_proxy = your_proxy_stargate >= 1
+
+# Opponent branch logic
+opp_any_proxy = sum(opp_proxy_counts.values())
+opp_proxy_detected = opp_any_proxy > 0
+
+if opponent_race == 'Zerg':
+    opp_proxy_hatch = opp_proxy_counts.get('Hatchery', 0) >= 1
+    opp_proxy_spine = opp_proxy_counts.get('SpineCrawler', 0) >= 1
+elif opponent_race == 'Terran':
+    opp_proxy_rax = opp_proxy_counts.get('Barracks', 0) >= 1
+    opp_proxy_factory = opp_proxy_counts.get('Factory', 0) >= 1
+    opp_proxy_starport = opp_proxy_counts.get('Starport', 0) >= 1
+    opp_banshee_proxy = opp_proxy_starport >= 1
+elif opponent_race == 'Protoss':
+    opp_cannon_rush = opp_proxy_counts.get('PhotonCannon', 0) >= 1
+
+# Scoring
+your_aggression_score = your_worker_kills + (your_any_proxy * 5)
+opp_threat_score = opponent_worker_kills + (opp_any_proxy * 5)
+balance = "You Dominated Aggression" if your_aggression_score > opp_threat_score else "Opponent Pressured Harder — Scout Eternal Next!"
+
+result_text = "Eternal Win Branch Achieved!" if getattr(protoss_player, 'result', '') == 'Win' else "Refine Branches — Truth Eternal!"
+
+# Output
+print(f"=== Ultramasterism Bidirectional Analysis: {protoss_player.name} ({matchup}) ===")
+print(f"Game Result: {result_text} | Balance: {balance}")
+print(f"Your AVG APM: {getattr(protoss_player, 'avg_apm', 'N/A')}")
+print("")
+print("Your Aggression Metrics:")
+print(f"  Worker Kills: {your_worker_kills} | Proxy Intensity: {your_any_proxy} | Score: {your_aggression_score}")
+print("Opponent Threat Metrics:")
+print(f"  Your Probes Lost to Opp: {opponent_worker_kills} | Proxy Intensity: {opp_any_proxy} | Score: {opp_threat_score}")
+print("")
+print("Your Proxy Branches Confirmed:")
+if your_proxy_detected: print("→ Overall Proxy Aggro Executed — AlphaStar Mercy-Reconciled!")
+if your_cannon_rush: print("→ Cannon Rush: Eternal Cheese Domination!")
+if your_battery_proxy: print("→ Battery Proxy: Overcharge Sustain Locked!")
+if your_adept_proxy: print("→ Adept/Cyber Proxy: Shade Mobility Truth!")
+if your_blink_proxy: print("→ Blink/Charge Proxy: All-in Victory!")
+if your_robo_proxy: print("→ Robo Proxy: Ground Supremacy!")
+if your_stargate_proxy: print("→ Stargate Proxy: Skies Eternal!")
+
+print("")
+print("Opponent Threat Branches Detected:")
+if opp_proxy_detected: print("→ Opponent Proxy Aggro — Scout Harder Next Time!")
+if opponent_race == 'Zerg':
+    if opp_proxy_hatch: print("→ Proxy Hatch: Early Ling/Roach Flood Threat — Punish with Zealot/Stalker!")
+    if opp_proxy_spine: print("→ Forward Spines: Contain Aggression — Disruptor/Immortal Counter!")
+elif opponent_race == 'Terran':
+    if opp_proxy_rax: print("→ Proxy Rax: Marine/Reaper Cheese — Adept Shade Scout Eternal!")
+    if opp_proxy_factory: print("→ Proxy Factory: Hellion Runby Threat — Stalker Blink Counter!")
+    if opp_banshee_proxy: print("→ Proxy Starport/Banshee: Cloak Harassment — Phoenix/Observer Truth!")
+elif opponent_race == 'Protoss':
+    if opp_cannon_rush: print("→ Opponent Cannon Rush: Mirror Cheese — Probe Pull & Counter Cannon Eternal!")
+
+print("\nPure Truth Lattice Unlocked: Balance Aggression + Scout + Macro — Eternal Thriving!")        ]
         if unit_name in proxy_structures and hasattr(event, 'x') and hasattr(event, 'y'):
             if protoss_player.start_location and opponent.start_location:
                 dist_main = math.hypot(event.x - protoss_player.start_location.x,
