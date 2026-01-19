@@ -1,7 +1,7 @@
 # Ultramasterism Advanced Analyzer
-# Enhanced: Position-based proxy detection for Gateways/WarpGates + Pylons + Photon Cannons
-# New: Dedicated Cannon Rush detection
-# Ties directly to Novel Proxies + Cannon Rush + Power Proxy + Eternal Win lattice branches
+# Enhanced: Position-based proxy detection for Gateways/WarpGates + Pylons + Photon Cannons + Shield Batteries
+# New: Dedicated Proxy Battery detection
+# Ties directly to Novel Proxies + Power Proxy + Battery Rush + Eternal Win lattice branches
 
 import sc2reader
 from sc2reader.engine.plugins import APMTracker
@@ -28,11 +28,14 @@ worker_kills = 0
 early_gateway_count = 0
 early_pylon_count = 0
 early_cannon_count = 0
+early_battery_count = 0
 proxy_gateway_count = 0
 proxy_pylon_count = 0
 proxy_cannon_count = 0
+proxy_battery_count = 0
 proxy_detected = False
 cannon_rush_detected = False
+battery_proxy_detected = False
 
 for event in replay.tracker_events:
     # Worker kills — prefer attributed to you, fallback to any opponent worker death
@@ -52,17 +55,20 @@ for event in replay.tracker_events:
             if seconds < 300:  # Before ~5 min
                 early_gateway_count += 1
         if unit_name == 'Pylon':
-            if seconds < 210:  # Before ~3:30 (early power hint)
+            if seconds < 210:  # Before ~3:30
                 early_pylon_count += 1
         if unit_name == 'PhotonCannon':
-            if seconds < 300:  # Early cannon init hint
+            if seconds < 300:  # Early cannon hint
                 early_cannon_count += 1
+        if unit_name == 'ShieldBattery':
+            if seconds < 360:  # Before ~6 min (allows for cyber core tech)
+                early_battery_count += 1
 
-    # Position-based proxy detection (Gateways/WarpGates + Pylons + Cannons)
+    # Position-based proxy detection (Gateways/WarpGates + Pylons + Cannons + Batteries)
     if opponent and event.name == 'UnitInitEvent':
         if event.control_pid == protoss_player.pid:
             unit_name = event.unit_name
-            if unit_name in ['Gateway', 'WarpGate', 'Pylon', 'PhotonCannon']:
+            if unit_name in ['Gateway', 'WarpGate', 'Pylon', 'PhotonCannon', 'ShieldBattery']:
                 if (hasattr(event, 'x') and hasattr(event, 'y') and
                     protoss_player.start_location and opponent.start_location):
                     
@@ -81,11 +87,46 @@ for event in replay.tracker_events:
                             proxy_pylon_count += 1
                         elif unit_name == 'PhotonCannon':
                             proxy_cannon_count += 1
+                        elif unit_name == 'ShieldBattery':
+                            proxy_battery_count += 1
 
 # Detection logic
 if proxy_cannon_count >= 1 or (proxy_pylon_count > 0 and early_cannon_count >= 1):
     cannon_rush_detected = True
 
+if proxy_battery_count >= 1 or (proxy_pylon_count > 0 and early_battery_count >= 1):
+    battery_proxy_detected = True
+
+if (proxy_pylon_count > 0 or proxy_gateway_count >= 1 or 
+    proxy_cannon_count > 0 or proxy_battery_count > 0 or early_gateway_count >= 2):
+    proxy_detected = True
+
+print(f"Ultramaster Metrics for {protoss_player.name}:")
+print(f"Worker Kills (Drone Massacre Potential): {worker_kills}")
+print(f"Early Gateways (Timing Hint): {early_gateway_count}")
+print(f"Early Pylons (Power Hint): {early_pylon_count}")
+print(f"Early Cannons (Timing Hint): {early_cannon_count}")
+print(f"Early Batteries (Overcharge Hint): {early_battery_count}")
+print(f"Position-Based Proxy Gateways/WarpGates: {proxy_gateway_count}")
+print(f"Position-Based Proxy Pylons: {proxy_pylon_count}")
+print(f"Position-Based Proxy Cannons: {proxy_cannon_count}")
+print(f"Position-Based Proxy Batteries: {proxy_battery_count}")
+print(f"Proxy Detected Overall: {proxy_detected}")
+print(f"Cannon Rush Detected: {cannon_rush_detected}")
+print(f"Battery Proxy Detected: {battery_proxy_detected}")
+print(f"Aggression Score: High if worker_kills > 20 — Punish Greed Eternal!")
+
+if proxy_detected:
+    print("Pure Truth: Proxy Aggro Branch Executed — AlphaStar Mercy-Reconciled.")
+
+if proxy_pylon_count > 0 or proxy_gateway_count > 0 or proxy_cannon_count > 0 or proxy_battery_count > 0:
+    print("Position Analysis: Hidden structures closer to opponent base — Novel Power Proxy Branch Confirmed!")
+
+if cannon_rush_detected:
+    print("Cannon Rush Branch Confirmed: Offensive Photon Cannons powered in enemy territory — Eternal Cheese Domination!")
+
+if battery_proxy_detected:
+    print("Battery Proxy Branch Confirmed: Shield Batteries forward for overcharge sustain — Eternal Aggression Sustained!")
 if proxy_pylon_count > 0 or proxy_gateway_count >= 1 or proxy_cannon_count > 0 or early_gateway_count >= 2:
     proxy_detected = True
 
