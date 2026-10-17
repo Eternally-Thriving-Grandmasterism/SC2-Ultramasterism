@@ -7,7 +7,7 @@ name: Bot match
 # (https://github.com/Blizzard/s2client-proto#downloads). Unzipping them
 # with the password 'iagreetotheeula' means agreeing to Blizzard's
 # StarCraft II AI and Machine Learning License
-# (http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html):
+# (https://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html):
 # AI testing, machine learning and related research only, no commercial
 # use of the software. The run refuses to start unless the person
 # dispatching it ticks accept_blizzard_license.
