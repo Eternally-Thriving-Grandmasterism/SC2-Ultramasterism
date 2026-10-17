@@ -1,0 +1,130 @@
+name: Bot match
+
+# Plays the sc2um Protoss bot against StarCraft II's built-in AI on
+# Blizzard's headless Linux client and uploads replays + JSON results.
+#
+# The client and maps are downloaded at run time from Blizzard
+# (https://github.com/Blizzard/s2client-proto#downloads). Unzipping them
+# with the password 'iagreetotheeula' means agreeing to Blizzard's
+# StarCraft II AI and Machine Learning License
+# (http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html):
+# AI testing, machine learning and related research only, no commercial
+# use of the software. The run refuses to start unless the person
+# dispatching it ticks accept_blizzard_license.
+
+on:
+  workflow_dispatch:
+    inputs:
+      accept_blizzard_license:
+        description: "I accept Blizzard's StarCraft II AI and Machine Learning License (research, non-commercial)"
+        type: boolean
+        required: true
+        default: false
+      games:
+        description: "Number of games"
+        type: string
+        default: "3"
+      difficulty:
+        description: "Built-in AI difficulty"
+        type: choice
+        default: Easy
+        options: [VeryEasy, Easy, Medium, MediumHard, Hard, Harder, VeryHard]
+      vs_race:
+        description: "Built-in AI race"
+        type: choice
+        default: random
+        options: [random, protoss, terran, zerg]
+      map:
+        description: "Map (Ladder 2019 Season 3 pack)"
+        type: choice
+        default: AcropolisLE
+        options: [AcropolisLE, DiscoBloodbathLE, EphemeronLE, ThunderbirdLE, TritonLE, WintersGateLE, WorldofSleepersLE]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bot-match-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      SC2_LINUX_URL: https://blzdistsc2-a.akamaihd.net/Linux/SC2.4.10.zip
+      SC2_MAPS_URL: https://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season3.zip
+      GAMES: ${{ inputs.games }}
+      DIFFICULTY: ${{ inputs.difficulty }}
+      VS_RACE: ${{ inputs.vs_race }}
+      MAP: ${{ inputs.map }}
+    steps:
+      - name: Require licence acceptance
+        if: ${{ !inputs.accept_blizzard_license }}
+        run: |
+          echo "::error::Tick accept_blizzard_license to run (Blizzard AI and Machine Learning License)."
+          exit 1
+
+      - name: Validate games input
+        run: |
+          case "$GAMES" in (''|*[!0-9]*) echo "::error::games must be a number"; exit 1;; esac
+          if [ "$GAMES" -lt 1 ] || [ "$GAMES" -gt 20 ]; then echo "::error::games must be 1-20"; exit 1; fi
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Free disk space for the 4 GB client
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h "$RUNNER_TEMP"
+
+      - name: Download StarCraft II Linux client and maps
+        run: |
+          cd "$RUNNER_TEMP"
+          curl -fsSL --retry 3 -o SC2.zip "$SC2_LINUX_URL"
+          unzip -q -P iagreetotheeula SC2.zip
+          rm SC2.zip
+          curl -fsSL --retry 3 -o maps.zip "$SC2_MAPS_URL"
+          unzip -q -o -P iagreetotheeula maps.zip -d StarCraftII/Maps
+          rm maps.zip
+          # The Linux client resolves map paths under a lowercase "maps" folder.
+          ln -s Maps StarCraftII/maps
+          ls StarCraftII/Versions StarCraftII/Maps/Ladder2019Season3
+          echo "SC2PATH=$RUNNER_TEMP/StarCraftII" >> "$GITHUB_ENV"
+          df -h "$RUNNER_TEMP"
+
+      - name: Play games
+        run: |
+          python -m sc2um.bot play --race protoss --vs-race "$VS_RACE" \
+            --difficulty "$DIFFICULTY" --map "$MAP" --realtime false \
+            --games "$GAMES" --out-dir bot-results
+
+      - name: Write job summary
+        if: always()
+        run: |
+          if [ -f bot-results/results.json ]; then
+            {
+              echo "## Bot match: $GAMES game(s) vs $DIFFICULTY $VS_RACE on $MAP"
+              echo '```json'
+              python -c "import json; d=json.load(open('bot-results/results.json')); print(json.dumps({'results': d['results'], 'games': [{k: g[k] for k in ('game','result','game_length','enemy_race_played','error')} for g in d['games']]}, indent=2))"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload replays and results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bot-match-results
+          path: bot-results/
+          if-no-files-found: warn
