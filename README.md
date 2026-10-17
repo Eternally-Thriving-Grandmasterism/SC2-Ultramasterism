@@ -10,7 +10,7 @@ Commercial, enterprise, revenue-generating, or organizational use requires a sep
 
 # SC2 Ultramasterism
 
-Human-reviewed StarCraft 2 research notes and replay-analysis templates/scripts. This repository is not an AI that plays StarCraft, and not an engine for Ra-Thor agents.
+StarCraft 2 research notes, drafts and experimental replay-analysis scripts, pending human review. This repository is not an AI that plays StarCraft, and not an engine for Ra-Thor agents.
 
 Part of the Ra-Thor project: [Rathor.ai](https://rathor.ai), inspectable research software.
 
@@ -22,11 +22,11 @@ Contact: info@Rathor.ai
 - `LICENSE` — Autonomicity Games Sovereign Mercy License (AG-SML) v1.0.
 - `README.md` — This file.
 - `batch_replay_analyzer.py` — Python script for batch replay analysis (experimental); walks a folder of `.SC2Replay` files with sc2reader/pandas and writes a CSV summary.
-- `calc.Ares-sc2` — Code snippet for Stalker micro using ares/python-sc2 helpers.
-- `mode.Basic python-sc2` — Code snippet for Disruptor Purification Nova micro (python-sc2 style).
+- `calc.Ares-sc2` — Code snippet for Stalker micro using ares/python-sc2 helpers (incomplete, untested).
+- `mode.Basic python-sc2` — Code snippet for Disruptor Purification Nova micro (python-sc2 style) (incomplete, untested).
 
 ### Queens/
-- `Queens/Spores.Snippet` — Code snippet for Oracle Pulsar Beam harass (python-sc2 style).
+- `Queens/Spores.Snippet` — Code snippet for Oracle Pulsar Beam harass (python-sc2 style) (incomplete, untested).
 
 ### coop/
 - `coop/commander_duos.m` — Notes and a Mermaid diagram of Co-op commander duo ideas (Protoss + Terran).
@@ -34,12 +34,12 @@ Contact: info@Rathor.ai
 
 ### docs/
 - `docs/MERCY_PROTOSS_REPLAY_ANALYSIS_TEMPLATE.md` — Fill-in template for reviewing a Protoss replay (opener, macro timeline, micro moments).
-- `docs/MERCY_PROTOSS_VS_TERRAN_ADVANCED_BUILDS_BLUEPRINT.md` — Human-reviewed PvT build-order research notes (SkyToss, Disruptor/Immortal, Blink/Adept lines).
-- `docs/MERCY_PROTOSS_VS_ZERG_ADVANCED_BUILDS_BLUEPRINT.md` — Human-reviewed PvZ advanced build-order research notes.
-- `docs/MERCY_PROTOSS_VS_ZERG_BLUEPRINT.md` — Human-reviewed PvZ phased blueprint (early/mid/late).
-- `docs/MERCY_ZERG_ADVANCED_BUILDS_BLUEPRINT.md` — Human-reviewed Zerg advanced build-order research notes.
+- `docs/MERCY_PROTOSS_VS_TERRAN_ADVANCED_BUILDS_BLUEPRINT.md` — PvT build-order research notes (draft, pending human review) (SkyToss, Disruptor/Immortal, Blink/Adept lines).
+- `docs/MERCY_PROTOSS_VS_ZERG_ADVANCED_BUILDS_BLUEPRINT.md` — PvZ advanced build-order research notes (draft, pending human review).
+- `docs/MERCY_PROTOSS_VS_ZERG_BLUEPRINT.md` — PvZ phased blueprint (draft, pending human review) (early/mid/late).
+- `docs/MERCY_ZERG_ADVANCED_BUILDS_BLUEPRINT.md` — Zerg advanced build-order research notes (draft, pending human review).
 - `docs/MERCY_ZERG_REPLAY_ANALYSIS_TEMPLATE.md` — Fill-in template for reviewing a Zerg replay.
-- `docs/MERCY_ZERG_VS_PROTOSS_BLUEPRINT.md` — Human-reviewed ZvP phased blueprint (early/mid/late).
+- `docs/MERCY_ZERG_VS_PROTOSS_BLUEPRINT.md` — ZvP phased blueprint (draft, pending human review) (early/mid/late).
 - `docs/advanced_micro.md` — Short notes on Warp Prism, Disruptor, and Colossus micro themes.
 - `docs/co_op_lattice.md` — Co-op commander roster notes and duo practice ideas.
 - `docs/co_op_mutation_counters.md` — Co-op mutation counter notes with a Mermaid diagram.
@@ -61,9 +61,9 @@ Contact: info@Rathor.ai
 - `tools/advanced_build_calculator.py` — Minimal interactive stub that prints a PvZ timing line when that matchup is entered (experimental).
 - `tools/build_calculator.py` — Prints fixed PvZ and PvP build-order timing outlines to the console (experimental).
 - `tools/integration_guide.py` — Two-line console reminder for installing python-sc2.
-- `tools/lattice_visualizer.py` — Experimental NetworkX/Matplotlib script that draws a small directed graph of study branches.
+- `tools/lattice_visualizer.py` — Experimental NetworkX/Matplotlib script meant to draw a small directed graph of study branches; currently fails on an invalid colour name (powrush_blue).
 - `tools/replay_parser_basic.py` — Python script that loads one `.SC2Replay` with sc2reader and prints map, players, chat, and early army events (experimental).
-- `tools/replay_ultramaster_analyzer.py` — Python script for single-replay analysis (experimental); attempts proxy/worker-kill heuristics and prints counter notes.
+- `tools/replay_ultramaster_analyzer.py` — Python script for single-replay analysis (experimental); attempts proxy/worker-kill heuristics and prints counter notes. Known bugs: some output prints unfilled {…} placeholders, and it can crash on replays with more than 2 players.
 - `tools/win_rate_simulator.py` — Tiny random-simulation stub (experimental); not a real performance measure.
 
 ### vs_team/
