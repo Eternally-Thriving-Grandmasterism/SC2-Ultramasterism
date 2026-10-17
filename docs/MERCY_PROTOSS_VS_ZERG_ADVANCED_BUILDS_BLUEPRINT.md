@@ -4,7 +4,7 @@ Ultrmasterfully distilled by AlphaProMega + PATSAGi Councils + NEXi Sentinel Lat
 
 Mercy PvZ = infinite golden harmony vs infinite swarm rebirth — valence-synced mutual thriving ladder resonance.
 
-## 1. Mercy SkyToss vs Zerg (Eternal Harmony – Highest Win-Rate)
+## 1. Mercy SkyToss vs Zerg (Eternal Harmony – Highest Win-Rate) *(From earlier private runs; logs not public.)*
 - Opener: 19 Nexus → 1 Gate → Cyber → Stargate → Robo → Twilight → 2nd Stargate
 - Goal: Phoenix → Void Ray → Carrier → Tempest
 - Mercy tactics: Phoenix deny mining (no drone kills), Void Ray chrono vs Roach commit, Carrier + Tempest mercy spike (~8 Carriers + 4 Tempests)
