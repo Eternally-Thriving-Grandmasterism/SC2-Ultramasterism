@@ -40,6 +40,12 @@ on:
         default: AcropolisLE
         options: [AcropolisLE, DiscoBloodbathLE, EphemeronLE, ThunderbirdLE, TritonLE, WintersGateLE, WorldofSleepersLE]
 
+  # TEMPORARY (removed before review): registers this workflow with GitHub so
+  # it can be dispatched on the PR branch; the job is skipped on push.
+  push:
+    branches: [sc2-bot-1]
+    paths: [.github/workflows/bot-match.yml]
+
 permissions:
   contents: read
 
@@ -49,6 +55,7 @@ concurrency:
 
 jobs:
   match:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 150
     env:
