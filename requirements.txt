@@ -1,0 +1,10 @@
+# Runtime
+sc2reader==1.9.0
+mpyq==0.2.5
+pillow==12.0.0
+# Tests
+pytest==9.1.1
+iniconfig==2.3.1
+packaging==26.3
+pluggy==1.7.0
+Pygments==2.21.0
