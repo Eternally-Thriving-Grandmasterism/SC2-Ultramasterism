@@ -44,6 +44,17 @@ def frames_per_clock_second(replay) -> float:
     return LEGACY_FRAMES_PER_SECOND
 
 
+def format_length(length) -> Optional[str]:
+    """Format sc2reader's game length as ``mm:ss`` (``hh:mm:ss`` past an hour).
+
+    sc2reader prints lengths as ``07.48``; the rest of the engine uses the
+    in-game clock style ``07:48``.
+    """
+    if length is None:
+        return None
+    return str(length).replace(".", ":")
+
+
 def _game_seconds(replay, fps: float) -> Optional[float]:
     frames = getattr(replay, "frames", None)
     if frames:
@@ -94,7 +105,7 @@ def analyze_replay(
         "release": getattr(replay, "release_string", None),
         "expansion": getattr(replay, "expansion", None),
         "speed": getattr(replay, "speed", None),
-        "length": str(length) if length is not None else None,
+        "length": format_length(length),
         "length_seconds": round(game_seconds, 2) if game_seconds is not None else None,
         "minutes_analyzed": minutes,
         "notes": notes,

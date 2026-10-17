@@ -18,7 +18,7 @@ def test_load_replay_1v1(replay_1v1):
 def test_analyze_1v1_players(replay_1v1):
     report = analyze_replay(replay_1v1)
     assert report["type"] == "1v1"
-    assert report["length"] == "07.48"
+    assert report["length"] == "07:48"
     players = {p["name"]: p for p in report["players"]}
     assert set(players) == {"Alouette", "PXP"}
     assert players["Alouette"]["race"] == "Protoss"

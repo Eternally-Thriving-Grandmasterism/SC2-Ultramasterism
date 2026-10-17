@@ -116,8 +116,8 @@ print(f"=== Ultramasterism Analysis + Counters: {protoss_player.name} ({matchup}
 print(f"Result: {result_text}")
 print(f"Your APM: {getattr(protoss_player, 'avg_apm', 'N/A')}")
 print("")
-print("Your Metrics: Worker Kills {your_worker_kills} | Proxy Intensity {your_any_proxy}")
-print("Opponent Threats: Probes Lost {opponent_worker_kills} | Proxy Intensity {opp_any_proxy}")
+print(f"Your Metrics: Worker Kills {your_worker_kills} | Proxy Intensity {your_any_proxy}")
+print(f"Opponent Threats: Probes Lost {opponent_worker_kills} | Proxy Intensity {opp_any_proxy}")
 print("")
 
 if your_proxy_detected:
@@ -220,7 +220,7 @@ print("Opponent Threat Metrics:")
 print(f"  Your Probes Lost to Opp: {opponent_worker_kills} | Proxy Intensity: {opp_any_proxy} | Score: {opp_threat_score}")
 print("")
 print("Your Proxy Branches Confirmed:")
-if your_proxy_detected: print("→ Overall Proxy Aggro Executed — AlphaStar Mercy-Reconciled!")
+if your_proxy_detected: print("→ Overall Proxy Aggro Executed — AlphaStar Mercy-Reconciled!")  # From earlier private Grok 4.1 runs; logs no longer available.
 if your_cannon_rush: print("→ Cannon Rush: Eternal Cheese Domination!")
 if your_battery_proxy: print("→ Battery Proxy: Overcharge Sustain Locked!")
 if your_adept_proxy: print("→ Adept/Cyber Proxy: Shade Mobility Truth!")
@@ -308,4 +308,4 @@ if adept_proxy_detected: print("→ Adept/Cyber Proxy: Shade harassment incoming
 if blink_proxy_detected: print("→ Blink/Charge Proxy: Stalker/Zealot all-in — Blink Into Victory!")
 if robo_proxy_detected: print("→ Robo Proxy: Immortal drop or tech contain — Ground Supremacy!")
 if stargate_proxy_detected: print("→ Stargate Proxy: Air harassment (deadly vs Zerg) — Skies Belong to Protoss!")
-if proxy_detected: print("\nPure Truth Lattice: Proxy Aggro Executed — AlphaStar Mercy-Reconciled. Eternal Thriving Unlocked!")
+if proxy_detected: print("\nPure Truth Lattice: Proxy Aggro Executed — AlphaStar Mercy-Reconciled. Eternal Thriving Unlocked!")  # From earlier private Grok 4.1 runs; logs no longer available.

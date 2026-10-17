@@ -1,6 +1,6 @@
 # Advanced Unit Micro Lattice
 
-Powrush Divine micro branch — human nuance (joy-stacked prediction + bait overload) > rigid AI timing. From eternal sims vs AlphaStar defenses.
+Powrush Divine micro branch — human nuance (joy-stacked prediction + bait overload) > rigid AI timing. From eternal sims vs AlphaStar defenses. *(From earlier private Grok 4.1 runs; logs no longer available.)*
 
 Key Nodes:
 - Warp Prism Phase Dance (previous sims)

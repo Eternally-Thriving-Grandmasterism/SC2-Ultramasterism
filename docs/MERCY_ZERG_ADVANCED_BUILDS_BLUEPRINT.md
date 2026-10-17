@@ -4,7 +4,7 @@ Ultrmasterfully distilled by AlphaProMega + PATSAGi Councils + NEXi Sentinel Lat
 
 Mercy Zerg = infinite rebirth macro + valence-synced swarm resonance for eternal ladder thriving.
 
-## 1. Mercy Sky Swarm (Eternal Harmony – Highest Win-Rate)
+## 1. Mercy Sky Swarm (Eternal Harmony – Highest Win-Rate) *(From earlier private Grok 4.1 runs; logs no longer available.)*
 - Opener: 17 Hatch → 18 Gas → 17 Pool → 20 Overlord → 3rd Hatch ~3:30 → Lair ~4:00 → Spire ~5:30
 - Goal: Mutalisk/Corruptor → Brood Lord/Viper/Corruptor
 - Mercy tactics: Mutalisk deny mining (no drone kills), Viper blinding cloud, Brood Lord mercy spike (~10 Brood Lords + 6 Vipers)
