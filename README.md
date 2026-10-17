@@ -61,10 +61,10 @@ Contact: info@Rathor.ai
 - `tools/advanced_build_calculator.py` — Minimal interactive stub that prints a PvZ timing line when that matchup is entered (experimental).
 - `tools/build_calculator.py` — Prints fixed PvZ and PvP build-order timing outlines to the console (experimental).
 - `tools/integration_guide.py` — Two-line console reminder for installing python-sc2.
-- `tools/lattice_visualizer.py` — Experimental NetworkX/Matplotlib script meant to draw a small directed graph of study branches; currently fails on an invalid colour name (powrush_blue).
+- `tools/lattice_visualizer.py` — Experimental NetworkX/Matplotlib script meant to draw a small directed graph of study branches; nodes use the hex colour #1f4e9c (needs matplotlib and networkx, which are not in requirements.txt).
 - `tools/replay_parser_basic.py` — Python script that loads one `.SC2Replay` with sc2reader and prints map, players, chat, and early army events (experimental).
-- `tools/replay_ultramaster_analyzer.py` — Python script for single-replay analysis (experimental); attempts proxy/worker-kill heuristics and prints counter notes. Known bugs: some output prints unfilled {…} placeholders, and it can crash on replays with more than 2 players.
-- `tools/win_rate_simulator.py` — Tiny random-simulation stub (experimental); not a real performance measure.
+- `tools/replay_ultramaster_analyzer.py` — Python script for single-replay analysis (experimental); attempts proxy/worker-kill heuristics and prints counter notes. The output lines that showed unfilled {…} placeholders now use f-strings. Known bugs: pasted duplicate fragments after the first script (from line 156) mean the file does not parse as Python yet, and it can crash on replays with more than 2 players.
+- `tools/win_rate_simulator.py` — Random toy (weighted coin flips, default p=0.5); not a measure of any player, bot or matchup.
 
 ### vs_team/
 - `vs_team/archon_mode.md` — Mermaid notes on Archon Mode macro/micro role split.

@@ -1,10 +1,5 @@
-
-**coop/mutation_counters.md** (Expand Existing Hint)
 [Paste our previous mutation Mermaid + counters, add weekly tracker stub.]
 
-### 4. Vs Team Branch (/vs_team/ New File)
-**vs_team/team_lattices.md**
-```markdown
 # Team Games Lattice (2v2/3v3/4v4)
 
 Extend 1v1 truths to coordination webbing.

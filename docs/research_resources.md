@@ -1,6 +1,3 @@
-
-**docs/research_resources.md** (For AI/Human Learning)
-```markdown
 # Research & Learning Nexus
 - AlphaStar Paper: Nature 2019 (offline PDF recommmended).
 - Open-Source SC2 AI: python-sc2, SC2LE replays dataset.
