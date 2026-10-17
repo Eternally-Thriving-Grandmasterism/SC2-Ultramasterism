@@ -15,6 +15,6 @@ G.add_edges_from([
 ])
 
 pos = nx.multipartite_layout(G, subset_key="level")
-nx.draw(G, pos, with_labels=True, node_color="powrush_blue", font_weight="bold", arrows=True)
+nx.draw(G, pos, with_labels=True, node_color="#1f4e9c", font_weight="bold", arrows=True)
 plt.title("SC2-Ultramasterism Lattice")
 plt.show()
