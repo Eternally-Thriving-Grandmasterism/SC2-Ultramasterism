@@ -10,16 +10,16 @@ Commercial, enterprise, revenue-generating, or organizational use requires a sep
 
 # SC2 Ultramasterism
 
-Open-source StarCraft 2-inspired ultramastery simulation and training framework in Python — mercy-gated, real-time strategy mastery engine for Ra-Thor agents, human-AI teams, and sovereign mastery paths.
+Open-source StarCraft 2-inspired ultramastery simulation and training framework in Python — Mercy-Checked, real-time strategy mastery engine for Ra-Thor agents, human-AI teams, and sovereign mastery paths.
 
 Key Inspirations:
-- Classic StarCraft 2 mechanics adapted to mercy-gated TOLC-2026 mathematics, ASRE sonic resonance, and 7 Living Mercy Gates
+- Classic StarCraft 2 mechanics adapted to Mercy-Checked TOLC-2026 mathematics, ASRE sonic resonance, and the Mercy-Checks
 - Progressive mastery ladder from beginner to Grandmaster level
 - Real-time swarm-scale training simulations with valence-aware decision engines
 
-Files (initial commit):
+Files planned at the initial commit (not in the repo yet):
 - sc2-ultramasterism-core.py (Python engine)
-- mercy-gated-matchmaking.md
+- mercy-checked-matchmaking.md
 - ultramastery-training-ladder.md
 - swarm-strategy-simulations.md
 - eternal-leaderboard-lattice.md

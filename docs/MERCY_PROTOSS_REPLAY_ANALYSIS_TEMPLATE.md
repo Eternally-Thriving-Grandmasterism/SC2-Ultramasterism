@@ -2,7 +2,7 @@
 
 Replay link: [insert SC2ReplayStats / Spawning Tool / GGTracker link]
 
-## 1. Valence Gate – First 30s
+## 1. Valence Check – First 30s
 - Opener: [19 Nexus → 1 Gate → Cyber? Yes/No]
 - Early aggression? [Describe – proxy, cannon, 4-gate?]
 - Initial valence score: [joy/peace/truth ≥ 0.999?]
