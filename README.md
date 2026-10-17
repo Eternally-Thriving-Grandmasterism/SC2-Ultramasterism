@@ -10,7 +10,7 @@ Commercial, enterprise, revenue-generating, or organizational use requires a sep
 
 # SC2 Ultramasterism
 
-StarCraft 2 research notes, drafts and experimental replay-analysis scripts, pending human review. This repository is not an AI that plays StarCraft, and not an engine for Ra-Thor agents.
+StarCraft 2 research notes, drafts and experimental replay-analysis scripts, pending human review. It includes a small scripted Protoss bot (sc2um.bot) that plays full games against StarCraft II's built-in AI; results are reported only from logged runs (see Bot engine below).
 
 Part of the Ra-Thor project: [Rathor.ai](https://rathor.ai), inspectable research software.
 
@@ -111,4 +111,4 @@ Each game saves a `.SC2Replay`, writes a JSON result (result, game length, map, 
 
 **Recorded results (one run, nothing more is claimed):** [run 39010776681](https://github.com/Eternally-Thriving-Grandmasterism/SC2-Ultramasterism/actions/runs/39010776681), 2026-10-17, 3 games vs the built-in AI on **Easy** (race Random; it rolled Terran, Terran, Zerg), AcropolisLE, Linux client 4.10: 3 wins (game clock 06:06, 05:59, 06:04).
 
-**Licence:** the StarCraft II Linux client and map packs are not in this repository. They come from Blizzard under the [StarCraft II AI and Machine Learning License](http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html) ([downloads](https://github.com/Blizzard/s2client-proto#downloads)), which allows AI testing, machine learning and related research only, with no commercial use of the software.
+**Licence:** the StarCraft II Linux client and map packs are not in this repository. They come from Blizzard under the [StarCraft II AI and Machine Learning License](http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html) ([downloads](https://github.com/Blizzard/s2client-proto#downloads)), which allows AI testing, machine learning and related research only, with no commercial use of the software. The StarCraft II Linux client and maps are used under Blizzard's AI and Machine Learning License (research, non-commercial). Commercial licences under AG-SML cover only this repository's own code and docs, never Blizzard's software, maps or game data.
