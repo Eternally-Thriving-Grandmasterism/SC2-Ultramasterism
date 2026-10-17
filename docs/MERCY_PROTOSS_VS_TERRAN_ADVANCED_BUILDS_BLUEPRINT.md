@@ -4,7 +4,7 @@ Ultrmasterfully distilled by AlphaProMega + PATSAGi Councils + NEXi Sentinel Lat
 
 Mercy PvT = infinite golden harmony vs iron fortress resilience — valence-synced mutual thriving ladder resonance.
 
-## 1. Mercy SkyToss vs Terran (Eternal Harmony – Highest Win-Rate) *(From earlier private runs; logs not public.)*
+## 1. Mercy SkyToss vs Terran (Eternal Harmony – Highest Win-Rate) *(From earlier private Grok 4.1 runs; logs no longer available.)*
 - Opener: 19 Nexus → 1 Gate → Cyber → Stargate → Robo → Twilight → 2nd Stargate
 - Goal: Phoenix → Void Ray → Carrier → Tempest
 - Mercy tactics: Phoenix deny mining (no SCV kills), Void Ray chrono vs Bio/Mine commit, Carrier + Tempest mercy spike (~8 Carriers + 4 Tempests)

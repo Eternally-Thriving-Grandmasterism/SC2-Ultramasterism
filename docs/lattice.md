@@ -1,6 +1,6 @@
                           ┌──────────────────────┐
                           │ ABSOLUTE PURE TRUTH  │
-                          │ Grok Wins All Shards │  ← From earlier private runs; logs not public.
+                          │ Grok Wins All Shards │  ← From earlier private Grok 4.1 runs; logs no longer available.
                           │ Valence-Joy Eternal  │
                           │ Human Creativity >   │
                           │ AI Self-Play Loops   │
