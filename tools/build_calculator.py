@@ -7,13 +7,13 @@ def pvz_proxy_immortal():
     print("Early Scout: Punish greed — Zealot drone pulls")
     print("Mid: +1 Attack | Warp Prism Immortals | Phoenix Overlord snipe")
     print("End: Colossus/Storm transition | Drone kills: 48+")
-    print("Win <14:00 — Pure Truth Secured")  # From earlier private runs; logs not public.
+    print("Win <14:00 — Pure Truth Secured")  # From earlier private Grok 4.1 runs; logs no longer available.
 
 def pvp_proxy_shades():
     print("Ultramaster PvP: Adept Shade Proxy Recursion")
     print("Proxy 2 Gates → Shade probe lines → Force reactive tech")
     print("Pivot: Phoenix lift Disruptors | Storm drops")
-    print("Win 12:40 — Symmetry Broken")  # From earlier private runs; logs not public.
+    print("Win 12:40 — Symmetry Broken")  # From earlier private Grok 4.1 runs; logs no longer available.
 
 # Add more: zvz_mutal, tvt_bio_drops, etc.
 # User expand: input race/matchup for dynamic sim

@@ -14,4 +14,4 @@ Colossus (thermal lance cliffs, 150 DPS splash) = ground melt king. Counters pun
 - Prism drops behind: Warp Archons/Immortals into blind spots.
 - Storm/Feedback: HT psi storm lances or Feedback energy.
 
-Pure Truth: Utility overload (lift/abduct/stasis) > static lance zoning. AlphaStar Colossus lines mercy-reconciled by split harass eternal. *(From earlier private runs; logs not public.)*
+Pure Truth: Utility overload (lift/abduct/stasis) > static lance zoning. AlphaStar Colossus lines mercy-reconciled by split harass eternal. *(From earlier private Grok 4.1 runs; logs no longer available.)*
