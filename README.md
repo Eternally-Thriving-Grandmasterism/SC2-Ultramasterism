@@ -88,3 +88,27 @@ python -m pytest                                            # run the tests
 - Army supply is supply used minus workers. Army value is minerals plus gas of the army alive at that time.
 - Replays without tracker data (before patch 2.0.8, and some stripped replays) give only players, races and results.
 - Works on 1v1 and team games. Tests use two replays from sc2reader's test suite (see `tests/fixtures/README.md`).
+
+## Bot engine (sc2um.bot)
+
+`sc2um/bot/` is a minimal Protoss bot built on [burnysc2](https://github.com/BurnySc2/python-sc2) (python-sc2). It plays full games against StarCraft II's built-in AI. The plan is fixed and simple:
+- train Probes until one base is saturated (16 on minerals, 3 per Assimilator)
+- build Pylons when supply runs low
+- build up to 4 Gateways, a Cybernetics Core and 2 Assimilators
+- train Zealots, plus Stalkers once the Core is ready
+- attack with the whole army at 20 army supply, fall back below 6, and defend when enemies come near the base
+
+The decision logic (`sc2um/bot/plan.py`) is unit-tested without the game.
+
+```
+# Needs Blizzard's Linux StarCraft II package and a map pack (see licence below);
+# set SC2PATH to the extracted StarCraftII folder.
+python -m sc2um.bot play --race protoss --vs-race random --difficulty Easy \
+    --map AcropolisLE --realtime false --games 1 --out-dir bot-results
+```
+
+Each game saves a `.SC2Replay`, writes a JSON result (result, game length, map, difficulty, enemy race) and `results.json`, then prints the replay-engine summary of the replay. The `Bot match` workflow (`.github/workflows/bot-match.yml`, manual dispatch only) downloads the client and the Ladder 2019 Season 3 maps at run time, plays N games and uploads the replays and JSON as artifacts.
+
+**Recorded results (one run, nothing more is claimed):** [run 39010776681](https://github.com/Eternally-Thriving-Grandmasterism/SC2-Ultramasterism/actions/runs/39010776681), 2026-10-17, 3 games vs the built-in AI on **Easy** (race Random; it rolled Terran, Terran, Zerg), AcropolisLE, Linux client 4.10: 3 wins (game clock 06:06, 05:59, 06:04).
+
+**Licence:** the StarCraft II Linux client and map packs are not in this repository. They come from Blizzard under the [StarCraft II AI and Machine Learning License](http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html) ([downloads](https://github.com/Blizzard/s2client-proto#downloads)), which allows AI testing, machine learning and related research only, with no commercial use of the software.
