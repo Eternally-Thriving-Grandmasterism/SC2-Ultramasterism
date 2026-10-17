@@ -109,6 +109,10 @@ python -m sc2um.bot play --race protoss --vs-race random --difficulty Easy \
 
 Each game saves a `.SC2Replay`, writes a JSON result (result, game length, map, difficulty, enemy race) and `results.json`, then prints the replay-engine summary of the replay. The `Bot match` workflow (`.github/workflows/bot-match.yml`, manual dispatch only) downloads the client and the Ladder 2019 Season 3 maps at run time, plays N games and uploads the replays and JSON as artifacts.
 
-**Recorded results (one run, nothing more is claimed):** [run 39010776681](https://github.com/Eternally-Thriving-Grandmasterism/SC2-Ultramasterism/actions/runs/39010776681), 2026-10-17, 3 games vs the built-in AI on **Easy** (race Random; it rolled Terran, Terran, Zerg), AcropolisLE, Linux client 4.10: 3 wins (game clock 06:06, 05:59, 06:04). `tests/fixtures/api_bot_vs_easy_ai.SC2Replay.b64` is a separate local game used only as a test fixture and isn't one of the 3 reported games.
+**Recorded results (logged runs only, nothing more is claimed):**
+- **Easy:** [run 39010776681](https://github.com/Eternally-Thriving-Grandmasterism/SC2-Ultramasterism/actions/runs/39010776681), 2026-10-17, 3 games vs the built-in AI on **Easy** (race Random; it rolled Terran, Terran, Zerg), AcropolisLE, Linux client 4.10: 3 wins (game clock 06:06, 05:59, 06:04).
+- **Medium:** [run 39030120196](https://github.com/Eternally-Thriving-Grandmasterism/SC2-Ultramasterism/actions/runs/39030120196), 2026-10-17, 3 games vs the built-in AI on **Medium** (race Random; it rolled Zerg, Terran, Zerg), AcropolisLE, Linux client 4.10: 3 wins (game clock 07:10, 06:35, 06:32).
+
+`tests/fixtures/api_bot_vs_easy_ai.SC2Replay.b64` is a separate local game used only as a test fixture and isn't one of the reported games.
 
 **Licence:** the StarCraft II Linux client and map packs are not in this repository. They come from Blizzard under the [StarCraft II AI and Machine Learning License](https://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html) ([downloads](https://github.com/Blizzard/s2client-proto#downloads)), which allows AI testing, machine learning and related research only, with no commercial use of the software. Commercial licences under AG-SML cover only this repository's own code and docs, never Blizzard's software, maps or game data.
