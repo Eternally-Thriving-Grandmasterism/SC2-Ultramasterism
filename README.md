@@ -70,3 +70,21 @@ Contact: info@Rathor.ai
 - `vs_team/archon_mode.md` — Mermaid notes on Archon Mode macro/micro role split.
 
 Strategy notes get added only once written.
+
+## Replay engine (sc2um)
+
+`sc2um/` is a small Python package that reads one `.SC2Replay` file with [sc2reader](https://github.com/ggtracker/sc2reader). For each player it reports race, result, build order for the first N minutes, worker count at 3, 6 and 10 minutes, and an army timeline. No StarCraft II install is needed.
+
+```
+pip install -r requirements.txt
+python -m sc2um analyze path/to/game.SC2Replay              # text summary
+python -m sc2um analyze path/to/game.SC2Replay --json       # JSON
+python -m sc2um analyze path/to/game.SC2Replay --minutes 6  # shorter build order
+python -m pytest                                            # run the tests
+```
+
+- Times are the in-game clock (mm:ss). Structures are listed when started; units, morphs and upgrades when completed, since that is when the replay records them. Warp-ins are listed when the warp starts.
+- Supply is taken from the most recent stats sample (about every 7 seconds of game clock), so it is approximate.
+- Army supply is supply used minus workers. Army value is minerals plus gas of the army alive at that time.
+- Replays without tracker data (before patch 2.0.8, and some stripped replays) give only players, races and results.
+- Works on 1v1 and team games. Tests use two replays from sc2reader's test suite (see `tests/fixtures/README.md`).
