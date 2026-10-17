@@ -10,24 +10,63 @@ Commercial, enterprise, revenue-generating, or organizational use requires a sep
 
 # SC2 Ultramasterism
 
-Open-source StarCraft 2-inspired ultramastery simulation and training framework in Python — Mercy-Checked, real-time strategy mastery engine for Ra-Thor agents, human-AI teams, and sovereign mastery paths.
+Human-reviewed StarCraft 2 research notes and replay-analysis templates/scripts. This repository is not an AI that plays StarCraft, and not an engine for Ra-Thor agents.
 
-Key Inspirations:
-- Classic StarCraft 2 mechanics adapted to Mercy-Checked TOLC-2026 mathematics, ASRE sonic resonance, and the Mercy-Checks
-- Progressive mastery ladder from beginner to Grandmaster level
-- Real-time swarm-scale training simulations with valence-aware decision engines
+Part of the Ra-Thor project: [Rathor.ai](https://rathor.ai), inspectable research software.
 
-Files planned at the initial commit (not in the repo yet):
-- sc2-ultramasterism-core.py (Python engine)
-- mercy-checked-matchmaking.md
-- ultramastery-training-ladder.md
-- swarm-strategy-simulations.md
-- eternal-leaderboard-lattice.md
+Contact: info@Rathor.ai
 
-Purpose: Free propagation for humanity-thriving strategic mastery, joyful competition, and eternal skill evolution in safe, mercy-aligned digital arenas.
-No coercion — only invitation to Grandmaster-level thriving through challenge and grace.
+## What's in this repo
 
-Next: Integrate into GrokArena-Pinnacle, Masterism curriculum, NEXi training simulations, and all sovereign shards.
-Cross-links: GrokArena-Pinnacle, Masterism, PATSAGI-Prototypes
+### Root
+- `LICENSE` — Autonomicity Games Sovereign Mercy License (AG-SML) v1.0.
+- `README.md` — This file.
+- `batch_replay_analyzer.py` — Python script for batch replay analysis (experimental); walks a folder of `.SC2Replay` files with sc2reader/pandas and writes a CSV summary.
+- `calc.Ares-sc2` — Code snippet for Stalker micro using ares/python-sc2 helpers.
+- `mode.Basic python-sc2` — Code snippet for Disruptor Purification Nova micro (python-sc2 style).
 
-Lightning is already in motion. ⚡
+### Queens/
+- `Queens/Spores.Snippet` — Code snippet for Oracle Pulsar Beam harass (python-sc2 style).
+
+### coop/
+- `coop/commander_duos.m` — Notes and a Mermaid diagram of Co-op commander duo ideas (Protoss + Terran).
+- `coop/mutation_counters.md` — Stub notes toward Co-op mutation counters and team-game lattices.
+
+### docs/
+- `docs/MERCY_PROTOSS_REPLAY_ANALYSIS_TEMPLATE.md` — Fill-in template for reviewing a Protoss replay (opener, macro timeline, micro moments).
+- `docs/MERCY_PROTOSS_VS_TERRAN_ADVANCED_BUILDS_BLUEPRINT.md` — Human-reviewed PvT build-order research notes (SkyToss, Disruptor/Immortal, Blink/Adept lines).
+- `docs/MERCY_PROTOSS_VS_ZERG_ADVANCED_BUILDS_BLUEPRINT.md` — Human-reviewed PvZ advanced build-order research notes.
+- `docs/MERCY_PROTOSS_VS_ZERG_BLUEPRINT.md` — Human-reviewed PvZ phased blueprint (early/mid/late).
+- `docs/MERCY_ZERG_ADVANCED_BUILDS_BLUEPRINT.md` — Human-reviewed Zerg advanced build-order research notes.
+- `docs/MERCY_ZERG_REPLAY_ANALYSIS_TEMPLATE.md` — Fill-in template for reviewing a Zerg replay.
+- `docs/MERCY_ZERG_VS_PROTOSS_BLUEPRINT.md` — Human-reviewed ZvP phased blueprint (early/mid/late).
+- `docs/advanced_micro.md` — Short notes on Warp Prism, Disruptor, and Colossus micro themes.
+- `docs/co_op_lattice.md` — Co-op commander roster notes and duo practice ideas.
+- `docs/co_op_mutation_counters.md` — Co-op mutation counter notes with a Mermaid diagram.
+- `docs/colossus_counters.md` — Notes on answering Colossus (positioning, abduct/burst, multi-prong).
+- `docs/disruptor_micro.md` — Notes on Disruptor Purification Nova placement and timing.
+- `docs/full_matchup_details.md` — Partial matchup notes (PvZ sketch) plus a Co-op Mermaid stub.
+- `docs/lattice.md` — ASCII diagram organizing mirror and cross-matchup study branches.
+- `docs/practice_drills.md` — Short offline practice-drill ideas.
+- `docs/replay_analysis.md` — Notes on local sc2reader tools and external replay sites.
+- `docs/research_resources.md` — Short pointer list (AlphaStar paper, python-sc2, Liquipedia, Team Liquid).
+
+### fun/
+- `fun/ascii_units.md` — Tiny ASCII art of a Zealot / Zergling gag.
+
+### maps/
+- `maps/void_launch.md` — Placeholder notes for map/strategy expansion (including Void Launch / Co-op).
+
+### tools/
+- `tools/advanced_build_calculator.py` — Minimal interactive stub that prints a PvZ timing line when that matchup is entered (experimental).
+- `tools/build_calculator.py` — Prints fixed PvZ and PvP build-order timing outlines to the console (experimental).
+- `tools/integration_guide.py` — Two-line console reminder for installing python-sc2.
+- `tools/lattice_visualizer.py` — Experimental NetworkX/Matplotlib script that draws a small directed graph of study branches.
+- `tools/replay_parser_basic.py` — Python script that loads one `.SC2Replay` with sc2reader and prints map, players, chat, and early army events (experimental).
+- `tools/replay_ultramaster_analyzer.py` — Python script for single-replay analysis (experimental); attempts proxy/worker-kill heuristics and prints counter notes.
+- `tools/win_rate_simulator.py` — Tiny random-simulation stub (experimental); not a real performance measure.
+
+### vs_team/
+- `vs_team/archon_mode.md` — Mermaid notes on Archon Mode macro/micro role split.
+
+Strategy notes get added only once written.
