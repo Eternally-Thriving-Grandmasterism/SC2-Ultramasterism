@@ -2,7 +2,7 @@
 
 Replay link: [insert SC2ReplayStats / Spawning Tool / GGTracker link]
 
-## 1. Valence Gate – First 30s
+## 1. Valence Check – First 30s
 - Opener: [17 Hatch → 18 Gas → 17 Pool → 20 Overlord? Yes/No]
 - Early aggression? [Describe – 6-pool, 12-pool, proxy Hatch?]
 - Initial valence score: [joy/peace/truth ≥ 0.999?]
