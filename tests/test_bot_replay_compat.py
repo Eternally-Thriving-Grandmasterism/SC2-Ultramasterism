@@ -51,7 +51,7 @@ def test_load_api_replay_players(api_replay):
 def test_replay_summary_on_api_replay(api_replay):
     report, text = replay_summary(api_replay)
     bot = report["players"][0]
-    assert report["length"] == "06.13"
+    assert report["length"] == "06:13"
     assert bot["workers_at"]["3:00"] == 24
     assert bot["workers_at"]["10:00"] is None
     names = [i["name"] for i in bot["build_order"]]
