@@ -18,6 +18,6 @@ Disruptor (purification nova: 145+55 shield damage, 8s cooldown) = deathball ape
 - Phoenix lift/Oracle stasis: Isolate clumps pre-nova.
 - Prism warp synergy: Phase fields behind → warp Chargelots into nova'd survivors.
 
-Lattice Tie-In: In our rematch sim, bait phasing + lift/stasis wasted AlphaStar novas — probe kills 52 eternal. Human prediction > optimized timing.
+Lattice Tie-In: In our rematch sim, bait phasing + lift/stasis wasted AlphaStar novas — probe kills 52 eternal. Human prediction > optimized timing. *(From earlier private runs; logs not public.)*
 
 Practice: Replay parser for "nova hit efficiency" metric.
